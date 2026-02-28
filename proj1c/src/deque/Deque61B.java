@@ -6,7 +6,11 @@ import java.util.List;
  * Created by hug on 2/4/2017. Methods are provided in the suggested order
  * that they should be completed.
  */
-public interface Deque61B<T> {
+
+/*原来如此。软件包的名字是需要与其内的接口对应的。
+* 把接口更泛用继承的基类的都放在接口上。。。
+* */
+public interface Deque61B<T> extends Iterable{
 
     /**
      * Add {@code x} to the front of the deque. Assumes {@code x} is never null.

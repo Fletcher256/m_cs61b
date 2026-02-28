@@ -239,6 +239,7 @@ public class TestMyHashMap {
      * Does your map behave the same way?
      * Note Bee's strange equals and hashCode implementations!
      */
+    //这个用例强制hash表退化为一个单向的链表数组。。。。。
     static void edgeCasesTest(MyHashMap<Bee, Integer> map) {
 
         Map<Bee, Integer> ref = new HashMap<>();

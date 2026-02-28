@@ -10,7 +10,6 @@ public class FileReadDemo {
         int i = 0;
 
         while (!in.isEmpty()) {
-            i += 1;
             String nextLine = in.readLine();
             System.out.print("Line " + i + " is: ");
             System.out.println(nextLine);

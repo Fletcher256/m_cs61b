@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class PlotDemo {
     public static void main(String[] args) {
-
         NGramMap ngm = new NGramMap(TOP_14337_WORDS_FILE, TOTAL_COUNTS_FILE);
         ArrayList<String> words = new ArrayList<>();
         words.add("cat");

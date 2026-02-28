@@ -148,6 +148,8 @@ public class TestRedBlackTree {
         // right.right
         assertThat(rbtree.root.right.right).isNull();
 
+        //刚好不用转????
+        //左旋一下再右旋回来没问题。
         assertWithMessage("Number of Calls to Flip Colors after inserting (10, 5, 15) in order").that(callsToFlipColors).isEqualTo(1);
         assertWithMessage("Number of Calls to Rotate Left after inserting (10, 5, 15) in order").that(callsToRotateLeft).isEqualTo(0);
         assertWithMessage("Number of Calls to Rotate Right after inserting (10, 5, 15) in order").that(callsToRotateRight).isEqualTo(0);

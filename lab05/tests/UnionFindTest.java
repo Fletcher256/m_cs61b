@@ -86,6 +86,139 @@ public class UnionFindTest {
      * of all methods in your implementation.
      */
 
+    @Test
+    public void SizeofUnionTest() {
+        UnionFind uf = new UnionFind(15);
+
+        assertThat(uf.sizeOf(1)).isEqualTo(1);
+
+        uf.union(0, 0);
+
+        assertThat(uf.sizeOf(0)).isEqualTo(1);
+
+        uf.union(1, 0);
+
+        uf.union(0, 1);
+
+//        uf.sizeOf(0);
+
+        assertThat(uf.sizeOf(0)).isEqualTo(2);
+
+        uf.union(0, 2);
+
+        assertThat(uf.sizeOf(0)).isEqualTo(3);
+    }
+
+    @Test
+    public void QuickUnionTest() {
+        UnionFind uf = new UnionFind(15);
+
+        assertThat(uf.sizeOf(1)).isEqualTo(1);
+
+        uf.union(1, 0);
+
+        uf.union(0, 2);
+
+        uf.union(4, 3);
+
+        uf.union(5, 3);
+
+        //先造出两条枝。
+
+        uf.union(4, 0);
+
+        //接上
+
+        assertThat(uf.sizeOf(1)).isEqualTo(6);
+
+        assertThat(uf.parent(3)).isEqualTo(0);
+
+        assertThat(uf.parent(0)).isEqualTo(-6);
+
+        assertThat(uf.parent(4)).isEqualTo(3);
+
+        //优化测试-初步(树压缩)
+
+        uf.find(5);
+
+        assertThat(uf.parent(5)).isEqualTo(0);
+
+        //再来一条树吧。(等大。)算是测试规模扩大了。
+
+        uf.union(8, 7);
+
+        uf.union(6, 7);
+
+        uf.union(10, 9);
+
+        uf.union(11, 9);
+
+        uf.union(10,8);
+
+        assertThat(uf.sizeOf(7)).isEqualTo(6);
+
+        //先造出两条枝。
+
+        uf.union(10, 4);
+
+        assertThat(uf.parent(4)).isEqualTo(0);
+
+        assertThat(uf.parent(10)).isEqualTo(7);
+
+        uf.union(11,5);
+
+        assertThat(uf.parent(9)).isEqualTo(0);
+
+        assertThat(uf.parent(11)).isEqualTo(0);
+    }
+
+    @Test
+    public void BadUnionTest() {
+        UnionFind uf = new UnionFind(16);
+
+//        uf.union(1, 0);
+//
+//        uf.union(3, 2);
+//
+//        uf.union(5, 4);
+//
+//        uf.union(7, 6);
+//
+//        uf.union(9, 8);
+//
+//        uf.union(11, 10);
+//
+//        uf.union(13, 12);
+//
+//        uf.union(15, 14);
+
+        for(int i = 0;i<16;i+=2)
+        {
+            uf.union(i+1, i);
+        }
+
+        //基元准备完毕。
+
+//        uf.union(3,1);
+
+        for(int i = 1;i<16;i+=4)
+        {
+            uf.union(i+2, i);
+        }
+
+        uf.union(7, 0);
+
+        uf.union(15, 8);
+
+        //每次联合都会执行底层优化操作。
+        uf.union(15,0);
+
+        //如此,一个完全二叉树就构建完成了。
+
+        assertThat(uf.sizeOf(15)).isEqualTo(16);
+
+        assertThat(uf.parent(15)).isEqualTo(8);
+    }
 }
 
 

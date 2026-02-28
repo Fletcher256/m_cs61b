@@ -56,6 +56,25 @@ public class TestMyHashMapExtra {
     }
 
     @Test
+    public void removeSizeTest() {
+        MyHashMap<String, Integer> b= new MyHashMap<>();
+        assertThat(b.size()).isEqualTo(0);
+        b.put("hi", 1);
+        assertThat(b.size()).isEqualTo(1);
+        for (int i = 0; i < 455; i++) {
+            b.put("hi" + i, 1);
+        }
+        assertThat(b.size()).isEqualTo(456);
+        for (int i = 0; i < 455; i++) {
+            b.remove("hi" + i);
+        }
+        assertThat(b.size()).isEqualTo(1);
+        for (int i = 0; i < 455; i++) {
+            b.put("hi" + i, 1);
+        }
+        assertThat(b.size()).isEqualTo(456);
+    }
+    @Test
     public void sanityKeySetTest() {
         sanityKeySetTest(new MyHashMap<>());
     }
